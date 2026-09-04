@@ -73,40 +73,39 @@ export default function Nav() {
         </svg>
       </button>
 
-      {/* Mobile Drawer Overlay */}
+      {/* Mobile Navigation Drawer */}
       {isOpen && (
-        <div
-          className="fixed inset-0 z-[55] bg-black/60 backdrop-blur-sm sm:hidden"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
-
-      {/* Mobile Drawer */}
-      <div
-        className={`fixed top-0 right-0 z-[55] h-[100dvh] w-[70%] transform bg-background border-l border-white/10 shadow-2xl transition-transform duration-300 ease-in-out sm:hidden ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <div className="flex flex-col h-full pt-24 px-6 gap-6 overflow-y-auto">
-          {LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-lg font-medium text-muted transition-colors hover:text-foreground"
-              onClick={() => setIsOpen(false)}
-            >
-              {link.label}
-            </a>
-          ))}
-          <a
-            href="#contact"
-            className="mt-4 rounded-lg bg-accent px-4.5 py-3 text-center text-sm font-semibold text-white shadow-[0_4px_18px_rgba(37,99,235,0.35)] transition-transform active:scale-95"
+        <div className="fixed inset-0 z-[55] sm:hidden flex justify-end">
+          {/* Overlay */}
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={() => setIsOpen(false)}
-          >
-            Contact
-          </a>
+          />
+
+          {/* Drawer */}
+          <div className="relative h-[100dvh] w-[70%] bg-background border-l border-white/10 shadow-2xl animate-[slideIn_0.3s_ease-out]">
+            <div className="flex flex-col h-full pt-24 px-6 gap-6 overflow-y-auto">
+              {LINKS.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-lg font-medium text-muted transition-colors hover:text-foreground"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ))}
+              <a
+                href="#contact"
+                className="mt-4 rounded-lg bg-accent px-4.5 py-3 text-center text-sm font-semibold text-white shadow-[0_4px_18px_rgba(37,99,235,0.35)] transition-transform active:scale-95"
+                onClick={() => setIsOpen(false)}
+              >
+                Contact
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 }
