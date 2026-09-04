@@ -48,7 +48,7 @@ export default function Home() {
       <SplashScreen />
       <div ref={mainRef}>
         <Nav />
-        <main>
+        <main className="overflow-x-hidden">
           <Hero />
           <About />
           <Projects />
